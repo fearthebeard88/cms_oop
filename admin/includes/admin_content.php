@@ -10,12 +10,15 @@
 
 <?php
 
-$sql = "SELECT * FROM users where id = 1 ";
+$result_set = User :: find_all_users();
 
-$result = $db -> query($sql);
-$user_found = mysqli_fetch_array($result);
+while($row = mysqli_fetch_array($result_set)) {
+    echo $row['username'] . "<br/>";
+}
 
-echo $user_found['username'];
+$found_user = User :: find_user(2);
+
+echo $found_user['username'];
 ?>
 
                         <ol class="breadcrumb">
