@@ -7,9 +7,10 @@ class Database {
     public $connect;
     // function to set up database connection from constants defined in new_config file
     public function open_db() {
-        $this -> connect = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
-        if(!$this -> connect) {
-        die(mysqli_error($this -> connect));
+        $this -> connect = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+
+        if($this -> connect -> connect_errno) {
+            die($this -> connect -> connect_error);
         }
     }
     // function that will actually make the connection to the db when a new object is instantiated
@@ -18,22 +19,26 @@ class Database {
     }
     // function to make queries to the db
     public function query($sql) {
-        $result = mysqli_query($this -> connect, escape($sql));
-        confirm($result);
+        $sql = $this -> escape($sql);
+        $result = $this -> connect -> query($sql);
+        $this -> confirm($result);
         return $result;
     }
-    // function to check to make sure the query to the db worked
+
     private function confirm($result) {
         if(!$result) {
-            die(mysqli_error($this -> connect));
+            die($this -> connect -> error);
         }
     }
-    // function that escapes the strings inserted to queries to avoid sql injection
+
     public function escape($string) {
-        $escaped_query = mysqli_real_escape_string($this -> connect, $string);
-        return $escaped_query;
+        $escaped = $this -> connect -> real_escape_string($string);
+        return $escaped;
     }
 
+    public function the_insert_id() {
+        return $this -> connect -> insert_id;
+    }
 }
 
 $db = new Database();
