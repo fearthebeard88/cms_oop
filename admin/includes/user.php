@@ -1,18 +1,19 @@
 <?php
 
 class User {
-
+    // properties available to this class
     public $id;
     public $username;
     public $first_name;
     public $last_name;
     public $password;
 
+// static function calling the find_query method which uses the query method from $db which escapes the query, and makes sure there are no errors, and puts it into an array and then stuffing it into an object with the User class
 public static function find_all_users() {
     global $db;
     return self :: find_query("SELECT * FROM users ");
 }
-
+// static method that runs the find_query method to make a query to $db to find a specific user
 public static function find_user($id) {
     global $db;
 $results = self :: find_query("SELECT * FROM users WHERE id = {$id} LIMIT 1 ");
@@ -20,7 +21,7 @@ $found_user = mysqli_fetch_array($results);
 
 return $found_user;
 }
-
+// method that runs the query method from $db to escape and catch errors, then turns the results into an instantiated object with User class
 public static function find_query($sql) {
     global $db;
     $result_set = $db -> query($sql);
@@ -30,19 +31,19 @@ public static function find_query($sql) {
     }
     return $object_array;
 }
-
+// makes a new object with User class, but assigning the property values with values from the $db or whatever its called on
 public static function instantiate($found_user) {
     $user_object = new self;
 
-    forEach($user_object as $prop => $value) {
+    forEach($found_user as $prop => $value) {
         if($user_object->has_the_attribute($prop)) {
-            $user_object->prop = $value;
+            $user_object->$prop = $value;
         }
     }
     
     return $user_object;
 }
-
+// method that finds the key name to an array
 private function has_the_attribute($prop) {
     $object_properties = get_object_vars($this);
     return array_key_exists($prop, $object_properties);

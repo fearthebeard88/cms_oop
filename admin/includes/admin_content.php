@@ -9,8 +9,12 @@
                         </h1>
 
 <?php
+// equivalent to mysqli_query("SELECT * FROM users")
+$users = User :: find_all_users();
 
-
+forEach($users as $user) {
+    echo $user -> username . "<br/>";
+}
 
 ?>
 
