@@ -2,6 +2,12 @@
 
 class User {
 
+    public $id;
+    public $username;
+    public $first_name;
+    public $last_name;
+    public $password;
+
 public static function find_all_users() {
     global $db;
     return self :: find_query("SELECT * FROM users ");
