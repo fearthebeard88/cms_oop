@@ -17,9 +17,9 @@ public static function find_all_users() {
 public static function find_user($id) {
     global $db;
 $results = self :: find_query("SELECT * FROM users WHERE id = {$id} LIMIT 1 ");
-$found_user = mysqli_fetch_array($results);
+return !empty($results) ? array_shift($results) : false;
 
-return $found_user;
+
 }
 // method that runs the query method from $db to escape and catch errors, then turns the results into an instantiated object with User class
 public static function find_query($sql) {

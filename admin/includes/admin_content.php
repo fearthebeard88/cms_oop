@@ -10,11 +10,13 @@
 
 <?php
 // equivalent to mysqli_query("SELECT * FROM users")
-$users = User :: find_all_users();
+$users = User :: find_user(1);
 
-forEach($users as $user) {
-    echo $user -> username . "<br/>";
-}
+echo $users -> username;
+
+// forEach($users as $user) {
+//     echo $user -> username . "<br/>";
+// }
 
 ?>
 
