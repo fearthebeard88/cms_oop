@@ -1,6 +1,5 @@
 <?php ob_start(); ?>
 <?php include("init.php"); ?>
-<?php include("user.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
 
