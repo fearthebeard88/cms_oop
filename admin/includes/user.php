@@ -31,6 +31,19 @@ public static function find_query($sql) {
     }
     return $object_array;
 }
+
+public static function verify_user($username, $password) {
+    global $db;
+    $username = $db -> escape($username);
+    $password = $db -> escape($password);
+
+    $sql = "SELECT * FROM users WHERE ";
+    $sql .= "username = '{$username}' AND password = '{$password}' LIMIT 1 ";
+
+    $results = Self :: find_query($sql);
+    return !empty($results) ? array_shift($results) : false;
+
+}
 // makes a new object with User class, but assigning the property values with values from the $db or whatever its called on
 public static function instantiate($found_user) {
     $user_object = new self;

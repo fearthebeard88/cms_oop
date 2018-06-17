@@ -21,7 +21,7 @@ class Session {
     }
 
     public function is_signed_in() {
-        return $this -> $signed_in;
+        return $this -> signed_in;
     }
 
     public function login($user) {
