@@ -19,7 +19,6 @@ class Database {
     }
     // function to make queries to the db
     public function query($sql) {
-        $sql = $this -> escape($sql);
         $result = $this -> connect -> query($sql);
         $this -> confirm($result);
         return $result;
