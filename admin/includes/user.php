@@ -62,6 +62,24 @@ private function has_the_attribute($prop) {
     return array_key_exists($prop, $object_properties);
 }
 
+public function create() {
+    global $db;
+
+    $sql = "INSERT INTO users (username, password, first_name, last_name) ";
+    $sql .= "VALUES ('";
+    $sql .= $db -> escape($this -> username) . "', ";
+    $sql .= $db -> escape($this -> password) . "', ";
+    $sql .= $db -> escape($this -> first_name) . "', ";
+    $sql .= $db -> escape($this -> last_name) . "') ";
+
+    if($db -> query($sql)) {
+        return true;
+    } else {
+        return false;
+    }
+
+}
+
 }
 
 ?>
