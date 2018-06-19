@@ -67,12 +67,13 @@ public function create() {
 
     $sql = "INSERT INTO users (username, password, first_name, last_name) ";
     $sql .= "VALUES ('";
-    $sql .= $db -> escape($this -> username) . "', ";
-    $sql .= $db -> escape($this -> password) . "', ";
-    $sql .= $db -> escape($this -> first_name) . "', ";
+    $sql .= $db -> escape($this -> username) . "', '";
+    $sql .= $db -> escape($this -> password) . "', '";
+    $sql .= $db -> escape($this -> first_name) . "', '";
     $sql .= $db -> escape($this -> last_name) . "') ";
 
     if($db -> query($sql)) {
+        $this -> id = $db -> the_insert_id();
         return true;
     } else {
         return false;

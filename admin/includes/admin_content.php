@@ -12,7 +12,11 @@
 // equivalent to mysqli_query("SELECT * FROM users")
 $users = User :: find_user(1);
 
-echo $users -> username;
+$users -> username = "tferris88";
+$users -> password = "something_ok";
+$users -> first_name = "Tim";
+$users -> last_name = "Ferris";
+$users -> create();
 
 // forEach($users as $user) {
 //     echo $user -> username . "<br/>";
