@@ -2,6 +2,7 @@
 
 class User {
     // properties available to this class
+    protected static $db_table = "users";
     public $id;
     public $username;
     public $first_name;
@@ -63,10 +64,14 @@ private function has_the_attribute($prop) {
     return array_key_exists($prop, $object_properties);
 }
 
+public function save() {
+    return isSet($this -> id) ? $this -> update() : $this -> create();
+}
+
 public function create() {
     global $db;
 
-    $sql = "INSERT INTO users (username, password, first_name, last_name) ";
+    $sql = "INSERT INTO " . self::$db_table . " (username, password, first_name, last_name) ";
     $sql .= "VALUES ('";
     $sql .= $db -> escape($this -> username) . "', '";
     $sql .= $db -> escape($this -> password) . "', '";
@@ -85,7 +90,7 @@ public function create() {
 public function update() {
     global $db;
 
-    $sql = "UPDATE users SET ";
+    $sql = "UPDATE " . self :: $db_table . " SET ";
     $sql .= "username = '" . $db -> escape($this -> username) . "', ";
     $sql .= "password = '" . $db -> escape($this -> password) . "', ";
     $sql .= "first_name = '" . $db -> escape($this -> first_name) . "', ";
@@ -101,7 +106,7 @@ public function update() {
 public function delete() {
     global $db;
 
-    $sql = "DELETE FROM users WHERE id = " . $db -> escape($this -> id);
+    $sql = "DELETE FROM " . self :: $db_table . " WHERE id = " . $db -> escape($this -> id);
     $sql .= " LIMIT 1 ";
     $db -> query($sql);
 
