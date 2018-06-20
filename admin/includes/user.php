@@ -13,6 +13,7 @@ public static function find_all_users() {
     global $db;
     return self :: find_query("SELECT * FROM users ");
 }
+
 // static method that runs the find_query method to make a query to $db to find a specific user
 public static function find_user($id) {
     global $db;
@@ -79,6 +80,32 @@ public function create() {
         return false;
     }
 
+}
+
+public function update() {
+    global $db;
+
+    $sql = "UPDATE users SET ";
+    $sql .= "username = '" . $db -> escape($this -> username) . "', ";
+    $sql .= "password = '" . $db -> escape($this -> password) . "', ";
+    $sql .= "first_name = '" . $db -> escape($this -> first_name) . "', ";
+    $sql .= "last_name = '" . $db -> escape($this -> last_name) . "' ";
+    $sql .= "WHERE id = " . $db -> escape($this -> id);
+
+    $db -> query($sql);
+
+    return mysqli_affected_rows($db -> connect) == 1 ? true : false;
+
+}
+
+public function delete() {
+    global $db;
+
+    $sql = "DELETE FROM users WHERE id = " . $db -> escape($this -> id);
+    $sql .= " LIMIT 1 ";
+    $db -> query($sql);
+
+    return mysqli_affected_rows($db -> connect) == 1 ? true : false;
 }
 
 }
