@@ -3,6 +3,7 @@
 class User {
     // properties available to this class
     protected static $db_table = "users";
+    protected static $db_table_fields = array('username', 'password', 'first_name', 'last_name');
     public $id;
     public $username;
     public $first_name;
@@ -64,6 +65,10 @@ private function has_the_attribute($prop) {
     return array_key_exists($prop, $object_properties);
 }
 
+protected function properties() {
+    return get_object_vars($this);
+}
+
 public function save() {
     return isSet($this -> id) ? $this -> update() : $this -> create();
 }
@@ -71,13 +76,11 @@ public function save() {
 public function create() {
     global $db;
 
-    $sql = "INSERT INTO " . self::$db_table . " (username, password, first_name, last_name) ";
-    $sql .= "VALUES ('";
-    $sql .= $db -> escape($this -> username) . "', '";
-    $sql .= $db -> escape($this -> password) . "', '";
-    $sql .= $db -> escape($this -> first_name) . "', '";
-    $sql .= $db -> escape($this -> last_name) . "') ";
+    $properties = $this -> properties();
 
+    $sql = "INSERT INTO " . self::$db_table . " (" . implode(array_keys(',',$properties)) . ") ";
+    $sql .= "VALUES ('" . implode("','",array_values($properties)) . "')";
+    
     if($db -> query($sql)) {
         $this -> id = $db -> the_insert_id();
         return true;
