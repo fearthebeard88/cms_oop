@@ -2,7 +2,7 @@
 <?php
 
 class DB_Object {
-    protected static $db_table = "users";
+    
 
 // static function calling the find_query method which uses the query method from $db which escapes the query, and makes sure there are no errors, and puts it into an array and then stuffing it into an object with the User class
 public static function find_all() {
