@@ -74,6 +74,15 @@ protected function properties() {
     } return $properties;
 }
 
+protected function clean_properties() {
+    global $db;
+
+    $clean = array();
+    forEach($this -> properties() as $key => $value) {
+        $clean[$key] = $db -> escape($value);
+    } return $clean;
+}
+
 public function save() {
     return isSet($this -> id) ? $this -> update() : $this -> create();
 }
@@ -81,7 +90,7 @@ public function save() {
 public function create() {
     global $db;
 
-    $properties = $this -> properties();
+    $properties = $this -> clean_properties();
 
     $sql = "INSERT INTO " . self::$db_table . " (" . implode(",",array_keys($properties)) . ") ";
     $sql .= "VALUES ('" . implode("','",array_values($properties)) . "')";
@@ -98,11 +107,15 @@ public function create() {
 public function update() {
     global $db;
 
+    $properties = $this -> clean_properties();
+    $pairs = array();
+
+    forEach($properties as $key => $value) {
+        $pairs[] = "{$key} = '{$value}'";
+    }
+
     $sql = "UPDATE " . self :: $db_table . " SET ";
-    $sql .= "username = '" . $db -> escape($this -> username) . "', ";
-    $sql .= "password = '" . $db -> escape($this -> password) . "', ";
-    $sql .= "first_name = '" . $db -> escape($this -> first_name) . "', ";
-    $sql .= "last_name = '" . $db -> escape($this -> last_name) . "' ";
+    $sql .= implode(", ", $pairs);
     $sql .= "WHERE id = " . $db -> escape($this -> id);
 
     $db -> query($sql);

@@ -10,14 +10,7 @@
 
 <?php
 
-$user = new User();
 
-$user -> username = 'TheMagician';
-$user -> password = 'vanish';
-$user -> first_name = 'Harry';
-$user -> last_name = 'Houdini';
-
-$user -> save();
 
 ?>
 
