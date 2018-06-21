@@ -9,14 +9,15 @@
                         </h1>
 
 <?php
-// equivalent to mysqli_query("SELECT * FROM users")
 
+$user = new User();
 
-// forEach($users as $user) {
-//     echo $user -> username . "<br/>";
-// }
+$user -> username = 'TheMagician';
+$user -> password = 'vanish';
+$user -> first_name = 'Harry';
+$user -> last_name = 'Houdini';
 
-$user = User :: find_user(1);
+$user -> save();
 
 ?>
 

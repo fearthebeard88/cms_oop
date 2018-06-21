@@ -66,7 +66,12 @@ private function has_the_attribute($prop) {
 }
 
 protected function properties() {
-    return get_object_vars($this);
+    $properties = array();
+    forEach(Self :: $db_table_fields as $db_field) {
+        if(property_exists($this, $db_field)) {
+            $properties[$db_field] = $this -> $db_field;
+        }
+    } return $properties;
 }
 
 public function save() {
@@ -78,7 +83,7 @@ public function create() {
 
     $properties = $this -> properties();
 
-    $sql = "INSERT INTO " . self::$db_table . " (" . implode(array_keys(',',$properties)) . ") ";
+    $sql = "INSERT INTO " . self::$db_table . " (" . implode(",",array_keys($properties)) . ") ";
     $sql .= "VALUES ('" . implode("','",array_values($properties)) . "')";
     
     if($db -> query($sql)) {
