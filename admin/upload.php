@@ -12,7 +12,7 @@ if(isSet($_POST['submit'])) {
     $photo -> set_file($_FILES['file_upload']);
 
     if($photo -> save_db()) {
-        $message = "Photo uploaded.  Hoozah!";
+        $message = "Photo uploaded.  Hoozah!" . "<br/>" . $photo -> size;
     } else {
         $message = join("<br/>", $photo -> errors);
     }
