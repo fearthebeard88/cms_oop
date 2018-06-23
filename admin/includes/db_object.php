@@ -29,11 +29,11 @@ public static function find_query($sql) {
 }
 
 // makes a new object with User class, but assigning the property values with values from the $db or whatever its called on
-public static function instantiate($found_user) {
+public static function instantiate($found_data) {
     $calling_class = get_called_class();
     $user_object = new $calling_class;
 
-    forEach($found_user as $prop => $value) {
+    forEach($found_data as $prop => $value) {
         if($user_object->has_the_attribute($prop)) {
             $user_object->$prop = $value;
         }
