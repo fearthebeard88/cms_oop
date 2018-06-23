@@ -25,16 +25,17 @@ class Photo extends DB_Object {
 
     public function set_file($file) {
         if(empty($file) || !$file || !is_array($file)) {
-            $this -> error[] = "File upload failure";
+            $this -> errors[] = "File upload failure";
             return false;
         } else if ($file['error'] != 0) {
-            $this -> upload_errors[$file['error']];
+            $this -> errors[] = $this -> upload_errors[$file['error']];
             return false;
         } else {
-            $this -> filename = basename(($file['name']));
+            $this -> filename = basename($file['name']);
             $this -> tmp_path = $file['tmp_name'];
             $this -> type = $file['type'];
             $this -> size = $file['size'];
+            return true;
         }
     }
 
@@ -47,13 +48,27 @@ class Photo extends DB_Object {
             }
 
             if(empty($this -> filename) || empty($this -> tmp_path)) {
-                $this -> error[] = "File not available";
+                $this -> errors[] = "File not available";
                 return false;
             }
 
-            $target_path = SITE_ROOT . DS . 'admin' . DS . $this -> upload_directory . DS . $filename;
+            $target_path = INCLUDES . DS . 'images' . DS . $this -> filename;
 
-            $this -> create();
+            if(file_exists($target_path)) {
+                $this -> errors[] = "The file {$this -> filename} already exists";
+                return false;
+            }
+
+            if(move_uploaded_file($this ->tmp_path, $target_path)) {
+                if($this -> create()) {
+                    unset($this -> tmp_path);
+                    return true;
+                }
+            } else {
+                print_r($_FILES);
+                $this -> errors[] = "The folder probably has issues with it's permissions";
+                return false;
+            }
         }
     }
 
