@@ -23,8 +23,6 @@ if(empty($_GET['id'])) {
     }
 }
 
-
-
 ?>
 
         <!-- Navigation -->
