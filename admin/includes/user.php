@@ -59,7 +59,7 @@ public function set_image($file) {
     }
 }
 
-public function save_photo() {
+public function save_photo_user() {
     if($this -> id) {
         $this -> update();
     } else {

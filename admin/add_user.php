@@ -14,7 +14,7 @@
             $user -> password = $_POST['password'];
 
             $user -> set_image($_FILES['user_image']);
-            if($user -> save_photo()) {
+            if($user -> save_photo_user()) {
                 redirect('users.php');
             }
             
