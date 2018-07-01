@@ -2,7 +2,17 @@
 <?php
 
 class DB_Object {
-    
+    public $errors = array();
+    public $upload_errors = array(
+        UPLOAD_ERR_OK => "There is no error, go us!",
+    UPLOAD_ERR_INI_SIZE => "The uploaded file exceeds the upload_max_file_size",
+    UPLOAD_ERR_FORM_SIZE => "The uploaded file exceeds the MAX_FILE_SIZE directive",
+    UPLOAD_ERR_PARTIAL => "The file was only partially uploaded",
+    UPLOAD_ERR_NO_FILE => "Nothing was uploaded",
+    UPLOAD_ERR_NO_TMP_DIR => "Missing the temp folder",
+    UPLOAD_ERR_CANT_WRITE => "Failed to write file to disk",
+    UPLOAD_ERR_EXTENSION => "A php extension is blocking the file upload"
+    );
 
 // static function calling the find_query method which uses the query method from $db which escapes the query, and makes sure there are no errors, and puts it into an array and then stuffing it into an object with the User class
 public static function find_all() {
@@ -99,7 +109,7 @@ public function update() {
 
     $sql = "UPDATE " . static :: $db_table . " SET ";
     $sql .= implode(", ", $pairs);
-    $sql .= "WHERE id = " . $db -> escape($this -> id);
+    $sql .= "WHERE id = " . $this -> id;
 
     $db -> query($sql);
 

@@ -42,7 +42,7 @@ class Photo extends DB_Object {
     }
 
     public function image_path() {
-        return 'includes' . DS . $this -> upload_directory . DS . $this -> filename;
+        return $this -> upload_directory . DS . $this -> filename;
     }
 
     public function save_db() {

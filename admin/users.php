@@ -53,8 +53,7 @@ $users = User :: find_all();
                         <td><?php echo $user -> username; ?>
                             <div class="action_links">
                                 <a href="includes/delete_user.php?id=<?php echo $user -> id; ?>">Delete</a>
-                                <a href="includes/edit_user.php?id=<?php echo $user -> id; ?>">Edit</a>
-                                <a href="includes/view_user.php?id=<?php echo $user -> id; ?>">View</a>
+                                <a href="edit_user.php?id=<?php echo $user -> id; ?>">Edit</a>
                             </div>
                         </td>
                         <td><?php echo $user -> first_name; ?></td>
