@@ -26,9 +26,12 @@
                 $user -> save();
                 redirect("edit_user.php?id={$user->id}");
             }
-            
-            
         }
+    }
+
+    if(isSet($_POST['delete'])) {
+        $user -> delete();
+        redirect("users.php");
     }
 
 ?>
@@ -80,6 +83,9 @@
                 </div>
                 <div class="form-group">
                     <input type="submit" name = "update" class = "btn btn-primary" value = "Update">
+                </div>
+                <div class="form-group">
+                    <input type="submit" name = "delete" class = "btn btn-danger" value = "Delete">
                 </div>
             </div>
         </form>

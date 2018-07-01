@@ -109,7 +109,7 @@ public function update() {
 
     $sql = "UPDATE " . static :: $db_table . " SET ";
     $sql .= implode(", ", $pairs);
-    $sql .= "WHERE id = " . $this -> id;
+    $sql .= "WHERE id = " . $db -> escape($this -> id);
 
     $db -> query($sql);
 
