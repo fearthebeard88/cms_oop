@@ -145,8 +145,6 @@ $comments = Comment::find_comments($photo->id);
 
                 <!-- Posted Comments -->
 <?php forEach($comments as $comment): ?>
-
-
                 <!-- Comment -->
                 <div class="media">
                     <a class="pull-left" href="#">
