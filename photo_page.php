@@ -1,8 +1,26 @@
+<?php require_once("admin/includes/init.php"); ?>
 <?php
+if(empty($_GET['id'])) {
+    redirect('index.php');
+}
+$photo = Photo::find_id($_GET['id']);
 
 if(isSet($_POST['submit'])) {
-    echo "hello world";
+    $author = trim($_POST['author']);
+    $body = trim($_POST['body']);
+
+    $comment = Comment::create_comment($photo->id, $author, $body);
+    if($comment && $comment->save()) {
+        redirect("photo_page.php?id={$photo->id}");
+    } else {
+        $message = "There was an issue with saving your comment.";
+    }
+} else {
+    $author = "";
+    $body = "";
 }
+
+$comments = Comment::find_comments($photo->id);
 
 ?>
 
@@ -126,6 +144,8 @@ if(isSet($_POST['submit'])) {
                 <hr>
 
                 <!-- Posted Comments -->
+<?php forEach($comments as $comment): ?>
+
 
                 <!-- Comment -->
                 <div class="media">
@@ -133,12 +153,12 @@ if(isSet($_POST['submit'])) {
                         <img class="media-object" src="http://placehold.it/64x64" alt="">
                     </a>
                     <div class="media-body">
-                        <h4 class="media-heading">Start Bootstrap
-                            <small>August 25, 2014 at 9:30 PM</small>
+                        <h4 class="media-heading"><?php echo $comment->author; ?>
                         </h4>
-                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                        <?php echo $comment->body; ?>
                     </div>
                 </div>
+    <?php endforeach; ?>
             </div>
 
             <!-- Blog Sidebar Widgets Column -->

@@ -14,7 +14,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="photo.php">Photo</a>
+                        <a href="photo_page.php">Photo</a>
                     </li>
                     <li>
                         <a href="#">Services</a>
