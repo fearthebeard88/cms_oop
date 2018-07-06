@@ -58,7 +58,7 @@ class Photo extends DB_Object {
                 return false;
             }
 
-            $target_path = INCLUDES . DS . 'images' . DS . $this -> filename;
+            $target_path = $this->upload_directory . DS . $this -> filename;
 
             if(file_exists($target_path)) {
                 $this -> errors[] = "The file {$this -> filename} already exists";

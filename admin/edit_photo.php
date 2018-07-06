@@ -43,8 +43,8 @@ if(empty($_GET['id'])) {
 <div class="row">
     <div class="col-lg-12">
         <h1 class="page-header">
-            Photos
-            <small>Subheading</small>
+            Edit Photos
+            <small><?php echo $photo->title; ?></small>
         </h1>
 
         <form action = "" method = "post">
