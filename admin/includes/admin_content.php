@@ -1,5 +1,4 @@
 <div class="container-fluid">
-
     <!-- Page Heading -->
     <div class="row">
         <div class="col-lg-12">
@@ -30,7 +29,6 @@
                 </a>
             </div>
         </div>
-
             <div class="col-lg-3 col-md-6">
             <div class="panel panel-green">
                 <div class="panel-heading">
@@ -39,7 +37,7 @@
                             <i class="fa fa-photo fa-5x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
-                            <div class="huge">7</div>
+                            <div class="huge"><?php echo Photo::count_all(); ?></div>
                             <div>Photos</div>
                         </div>
                     </div>
@@ -53,8 +51,6 @@
                 </a>
             </div>
         </div>
-
-
             <div class="col-lg-3 col-md-6">
             <div class="panel panel-yellow">
                 <div class="panel-heading">
@@ -63,10 +59,8 @@
                             <i class="fa fa-user fa-5x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
-                            <div class="huge">8
-
+                            <div class="huge"><?php echo User::count_all(); ?>
                             </div>
-
                             <div>Users</div>
                         </div>
                     </div>
@@ -80,7 +74,6 @@
                 </a>
             </div>
         </div>
-
             <div class="col-lg-3 col-md-6">
             <div class="panel panel-red">
                 <div class="panel-heading">
@@ -89,7 +82,7 @@
                             <i class="fa fa-support fa-5x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
-                            <div class="huge">8</div>
+                            <div class="huge"><?php echo Comment::count_all(); ?></div>
                             <div>Comments</div>
                         </div>
                     </div>
@@ -103,16 +96,14 @@
                 </a>
             </div>
         </div>
-
-
             </div> <!--First Row-->
             <div class="row">
+            <!-- google pie chart -->
             <div id="piechart" style="width: 900px; height: 500px;"></div>
   </body>
             </div>
         </div>
     </div>
     <!-- /.row -->
-
 </div>
 <!-- /.container-fluid -->

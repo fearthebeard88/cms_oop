@@ -127,6 +127,14 @@ public function delete() {
     return mysqli_affected_rows($db -> connect) == 1 ? true : false;
 }
 
+public static function count_all() {
+    global $db;
+    $sql = "SELECT COUNT(*) FROM " . static::$db_table;
+    $results = $db->query($sql);
+    $row = mysqli_fetch_array($results);
+    return array_shift($row);
+}
+
 }
 
 ?>
