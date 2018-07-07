@@ -6,7 +6,7 @@
         <div class="thumbnails row">
             <?php forEach($photos as $photo): ?>
                 <div class="col-xs-6 col-md-3">
-                    <a class = "thumbnail" href="">
+                    <a class = "thumbnail" href="photo_page.php?id=<?php echo $photo->id; ?>">
                         <img class="home_picture" src = "admin/<?php echo $photo->image_path(); ?>" alt="">
                     </a>
                 </div>

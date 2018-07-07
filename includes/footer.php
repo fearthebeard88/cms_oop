@@ -5,7 +5,7 @@
         <footer>
             <div class="row">
                 <div class="col-lg-12">
-                    <p>Copyright &copy;...Honestly, feel free to copy the site, it's part of a course.</p>
+                    <p class = "text-center">Copyright &copy;...Honestly, feel free to copy the site, it's part of a course.</p>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
