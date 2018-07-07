@@ -1,5 +1,16 @@
 <?php include("includes/header.php"); ?>
-<?php $photos = Photo::find_all(); ?>
+<?php
+
+$page = !empty($_GET['page']) ? (int)$_GET['page'] : 1;
+$photo_limit = 4;
+$photo_total = Photo::count_all();
+
+$paginate = new Paginate($page,$photo_limit,$photo_total);
+$sql="SELECT * FROM photo LIMIT {$photo_limit} ";
+$sql .= "OFFSET {$paginate->offset()} ";
+$photos = Photo::find_query($sql);
+
+?>
 <div class="row">
     <!-- Blog Entries Column -->
     <div class="col-md-12">
