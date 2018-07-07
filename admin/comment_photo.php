@@ -5,7 +5,11 @@
 ?>
 <?php
 
-$comments = Comment :: find_all();
+if(empty($_GET['photo_id'])) {
+    redirect("photos.php");
+}
+
+$comments = Comment::find_comments($_GET['photo_id']);
 
 ?>
 
@@ -27,8 +31,8 @@ $comments = Comment :: find_all();
 <div class="row">
     <div class="col-lg-12">
         <h1 class="page-header">
-            Comments
-            <small><a class = "btn btn-primary" href = "add_user.php">Add Comment</a></small>
+            Comments for Photo
+            <small></small>
         </h1>
         
         <div class="col-md-12">
@@ -36,9 +40,9 @@ $comments = Comment :: find_all();
                 <thead>
                     <tr>
                         <th>Id</th>
-                        <th>Photo_Id</th>
                         <th>Author</th>
                         <th>Body</th>
+                        <th>Delete</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -47,14 +51,13 @@ $comments = Comment :: find_all();
                 ?>
                     <tr>
                         <td><?php echo $comment->id; ?></td>
-                        <td><?php echo $comment->photo_id; ?>
-                        </td>
                         <td><?php echo $comment->author; ?>
-                            <div class="action_links">
-                                <a href="includes/delete_comment.php?id=<?php echo $comment->id; ?>">Delete</a>
-                            </div>
                         </td>
-                        <td><?php echo $comment->body; ?></td>
+                        <td><?php echo $comment->body; ?>
+                            <td><div class="action_links">
+                                <a href="includes/delete_comment.php?id=<?php echo $comment->id; ?>&comment=yes">Delete</a>
+                            </div></td>
+                        </td>
                     </tr>
     <?php endforeach; ?>
                 </tbody>

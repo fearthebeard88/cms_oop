@@ -8,11 +8,12 @@ if(empty($_GET['id'])) {
 
 $comment = Comment::find_id($_GET['id']);
 
-if($comment) {
+if(!empty($_GET['comment'])) {
+    $comment->delete();
+    redirect("../photos.php");
+} else {
     $comment->delete();
     redirect("../comments.php");
-} else {
-    die("Failed to delete the comment, this program shall terminate now.  Goodbye...*fizzle sound*");
 }
 
 ?>
