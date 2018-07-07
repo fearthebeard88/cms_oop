@@ -5,11 +5,21 @@ class Session {
     private $signed_in = false;
     public $user_id;
     public $message;
+    public $count;
 
     function __construct() {
         session_start();
         $this -> check_login();
+        $this->visitor_count();
         $this -> check_message();
+    }
+
+    public function visitor_count() {
+        if(isSet($_SESSION['count'])) {
+            return $this->count = $_SESSION['count']++;
+        } else {
+            return $_SESSION['count'] = 1;
+        }
     }
 
     public function message($msg = '') {
