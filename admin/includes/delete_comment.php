@@ -8,12 +8,18 @@ if(empty($_GET['id'])) {
 
 $comment = Comment::find_id($_GET['id']);
 
-if(!empty($_GET['comment'])) {
+if($comment) {
     $comment->delete();
-    redirect("../photos.php");
-} else {
-    $comment->delete();
-    redirect("../comments.php");
+    redirect("../comment_photo.php?photo_id={$comment->photo_id}");
 }
+
+// ill finish figuring out how to really stick it together later
+// if(!empty($_GET['comment'])) {
+//     $comment->delete();
+//     redirect("../photos.php");
+// } else {
+//     $comment->delete();
+//     redirect("../comments.php");
+// }
 
 ?>
