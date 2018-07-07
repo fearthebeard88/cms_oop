@@ -28,7 +28,7 @@ $comments = Comment :: find_all();
     <div class="col-lg-12">
         <h1 class="page-header">
             Comments
-            <small><a class = "btn btn-primary" href = "add_user.php">Add Comment</a></small>
+            <small>Viewing All Comments</small>
         </h1>
         
         <div class="col-md-12">
@@ -51,7 +51,7 @@ $comments = Comment :: find_all();
                         </td>
                         <td><?php echo $comment->author; ?>
                             <div class="action_links">
-                                <a href="includes/delete_comment.php?id=<?php echo $comment->id; ?>">Delete</a>
+                                <a href="includes/delete_comment.php?comments=yes&id=<?php echo $comment->id; ?>">Delete</a>
                             </div>
                         </td>
                         <td><?php echo $comment->body; ?></td>

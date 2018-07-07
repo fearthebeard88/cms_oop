@@ -8,7 +8,7 @@
 if(empty($_GET['photo_id'])) {
     redirect("photos.php");
 }
-
+$count = Comment::count_comments($_GET['photo_id']);
 $comments = Comment::find_comments($_GET['photo_id']);
 
 ?>
@@ -32,7 +32,7 @@ $comments = Comment::find_comments($_GET['photo_id']);
     <div class="col-lg-12">
         <h1 class="page-header">
             Comments for Photo
-            <small></small>
+            <small><?php echo $count; ?></small>
         </h1>
         
         <div class="col-md-12">
@@ -55,7 +55,7 @@ $comments = Comment::find_comments($_GET['photo_id']);
                         </td>
                         <td><?php echo $comment->body; ?>
                             <td><div class="action_links">
-                                <a href="includes/delete_comment.php?id=<?php echo $comment->id; ?>&comment=yes&photo_count=0">Delete</a>
+                                <a href="includes/delete_comment.php?id=<?php echo $comment->id; ?>&count=<?php echo $count; ?>">Delete</a>
                             </div></td>
                         </td>
                     </tr>

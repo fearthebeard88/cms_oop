@@ -8,29 +8,22 @@
 $photos = Photo :: find_all();
 
 ?>
-
         <!-- Navigation -->
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <?php include("includes/top_nav.php"); ?>
-
-
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
             <?php include("includes/side_nav.php"); ?>
             <!-- /.navbar-collapse -->
         </nav>
-
         <div id="page-wrapper">
-
             <div class="container-fluid">
-
 <!-- Page Heading -->
 <div class="row">
     <div class="col-lg-12">
         <h1 class="page-header">
             Photos
-            <small>subtitle</small>
+            <small>Viewing All Photos</small>
         </h1>
-        
         <div class="col-md-12">
             <table class = "table table-hover">
                 <thead>
@@ -60,7 +53,10 @@ $photos = Photo :: find_all();
                         <td><?php echo $photo -> title; ?></td>
                         <td><?php echo $photo -> size; ?></td>
                         <td><?php $comments = Comment::find_comments($photo->id);
-                            echo count($comments);
+                        echo $count = Comment::count_comments($photo->id);
+                        // earlier version that works fine, just wanted something a bit more robust
+                        // $comments = Comment::find_comments($photo->id);
+                            // echo count($comments);
                          ?><a href = "comment_photo.php?photo_id=<?php echo $photo->id; ?>"> Comments</a></td>
                     </tr>
     <?php endforeach; ?>
@@ -71,10 +67,8 @@ $photos = Photo :: find_all();
     </div>
 </div>
 <!-- /.row -->
-
 </div>
 <!-- /.container-fluid -->
         </div>
         <!-- /#page-wrapper -->
-
   <?php include("includes/footer.php"); ?>
