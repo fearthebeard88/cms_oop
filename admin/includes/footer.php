@@ -25,9 +25,16 @@
         var options = {
           title: 'Views, Photos, Users, and Comments',
           is3D: 'true',
+          backgroundColor: 'transparent',
           slices: {
-            0: {offset: 0.5}
-          }
+            0: {offset: 1},
+            1: {offset: 0.1},
+            2: {offset: 0.1},
+            3: {offset: 0.1}
+          },
+          colors: [
+            'steelblue', 'limegreen', 'goldenrod', 'crimson'
+          ]
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
