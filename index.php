@@ -23,6 +23,23 @@ $photos = Photo::find_query($sql);
                 </div>
             <?php endforeach; ?>
         </div>
+        <div class="row">
+            <ul class="pager">
+            <?php
+
+            if($paginate->total_pages() > 1) {
+                if($paginate->has_next()) {
+                    echo "<li class='next'><a href='index.php?page={$paginate->next_page()}'>Next</a></li>";
+                }
+                if($paginate->has_previous()) {
+                    echo "<li class='previous'><a href='index.php?page={$paginate->previous_page()}'>Previous</a></li>";
+                }
+            }
+
+            ?>
+                
+            </ul>
+        </div>
     </div>
 </div>
 
