@@ -3,8 +3,8 @@
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">
-                Blank Page
-                <small>Subheading</small>
+                Welcome to the Admin
+                <small>Tim</small>
             </h1>
             <div class="row">
         <div class="col-lg-3 col-md-6">
@@ -20,7 +20,7 @@
                         </div>
                     </div>
                 </div>
-                <a href="#">
+                <a href="index.php">
                     <div class="panel-footer">
                         <span class="pull-left">View Details</span> 
                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span> 
@@ -42,7 +42,7 @@
                         </div>
                     </div>
                 </div>
-                <a href="#">
+                <a href="photos.php">
                     <div class="panel-footer">
                         <span class="pull-left">Total Photos in Gallery</span>
                         <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -65,7 +65,7 @@
                         </div>
                     </div>
                 </div>
-                <a href="#">
+                <a href="users.php">
                     <div class="panel-footer">
                         <span class="pull-left">Total Users</span>
                         <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -87,7 +87,7 @@
                         </div>
                     </div>
                 </div>
-                <a href="#">
+                <a href="comments.php">
                     <div class="panel-footer">
                         <span class="pull-left">Total Comments</span>
                         <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
