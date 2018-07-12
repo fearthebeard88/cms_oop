@@ -57,9 +57,9 @@
             Edit User
             <small><?php echo $user -> username; ?></small>
         </h1>
-
+<?php include("includes/photo_library_modal.php"); ?>
     <div class="col-md-6">
-        <img class = "img-responsive" src = "<?php echo $user -> user_picture(); ?>" alt = "user picture">
+        <a href="#" data-toggle="modal" data-target="#photo-library"><img class = "img-responsive" src = "<?php echo $user -> user_picture(); ?>" alt = "user picture"></a>
     </div>
 
         <form action = "" method = "post" enctype = "multipart/form-data">
