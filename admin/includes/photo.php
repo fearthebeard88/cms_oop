@@ -87,6 +87,17 @@ public function delete_photo() {
     }
 }
 
+public static function sidebar_data($photo_id) {
+    $photo = Photo::find_id($photo_id);
+
+    $results = "<a class = 'thumbnail' href = '#'><img width = '100' src = '{$photo->image_path()}'>";
+    $results.= "<p>{$photo->filename}</p>";
+    $results.= "<p>{$photo->type}</p>";
+    $results.= "<p>{$photo->size}</p>";
+
+    echo $results;
+}
+
 }
 
 ?>
