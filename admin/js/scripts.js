@@ -8,7 +8,7 @@ $(document).ready(function() {
         $("#set_user_image").prop('disabled', false);
         user_id = $.urlParam('id');
         $.ajax({
-            url: 'edit_user.php',
+            url: 'ajax_code.php',
             data: user_id,
             success: console.log(user_id),
             dataType: 'string'
@@ -30,7 +30,7 @@ $(document).ready(function() {
             type: "POST",
             success: function(data) {
                 if(!data.error) {
-                    alert(image_name);
+                    location.reload(true);
                 }
             }
         })
