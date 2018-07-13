@@ -78,9 +78,19 @@ public function save_photo() {
     }
 
     public function ajax_image($user_image, $user_id) {
+        global $db;
+
+        $user_image = $db->escape($user_image);
+        $user_id = $db->escape($user_id);
+
         $this->user_image = $user_image;
         $this->id = $user_id;
-        $this->save();
+
+        $sql = "UPDATE " . self::$db_table . " SET user_image = '{$this->user_image}' ";
+        $sql .= "WHERE id = {$this->id} ";
+        $update_image = $db->query($sql);
+
+        echo $this->user_picture();
     }
 }
 
