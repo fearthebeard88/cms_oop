@@ -29,9 +29,15 @@ $(document).ready(function() {
                 }
             }
         })
-    
-    tinymce.init({ selector:'textarea' });
-    })
+    });
+
+    // edit_photo.php sidebar
+    $(".info-box-header").click(function() {
+        $(".inside").slideToggle("slow");
+        $("#toggle").toggleClass("glyphicon-menu-down glyphicon , glyphicon-menu-up glyphicon");
+    });
+
+tinymce.init({ selector:'textarea' });
 
     $("#set_user_image").click(function() {
         $.ajax({
