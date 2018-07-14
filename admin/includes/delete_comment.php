@@ -10,11 +10,14 @@ $comment = Comment::find_id($_GET['id']);
 
 if($_GET['count'] >= 2 && $_GET['comments'] !== 'yes') {
     $comment->delete();
+    $session->message("Comment has been deleted");
     redirect("../comment_photo.php?photo_id={$comment->photo_id}");
 } else if($_GET['count'] <= 1 && $_GET['comments'] !== 'yes') {
+    $session->message("Comment has been deleted");
     $comment->delete();
     redirect("../photos.php");
 } else if($_GET['comments'] === 'yes') {
+    $session->message("Comment has been deleted");
     $comment->delete();
     redirect("../comments.php");
 }

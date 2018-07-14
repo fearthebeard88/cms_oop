@@ -13,8 +13,10 @@ $photo = Photo :: find_id($_GET['id']);
 
 if($photo) {
     $photo -> delete_photo();
+    $session->message("The photo, {$photo->title},  has been deleted");
     redirect("photos.php");
 } else {
+    $session->message("The photo, {$photo->title},  has NOT been deleted.");
     redirect("photos.php");
 }
 
