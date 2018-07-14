@@ -31,6 +31,15 @@ $(document).ready(function() {
         })
     });
 
+    // delete photos function
+    $(".delete_photo").click(function() {
+        return confirm("Are you sure you wish to delete this photo?");
+    });
+    // delete users function
+    $(".delete_user").click(function() {
+        return confirm("Are you sure you wish to delete this user?");
+    })
+
     // edit_photo.php sidebar
     $(".info-box-header").click(function() {
         $(".inside").slideToggle("slow");
