@@ -11,32 +11,31 @@ class Database {
 
         if($this -> connect -> connect_errno) {
             die($this -> connect -> connect_error);
-        }
+        } return $this->connect;
     }
     // function that will actually make the connection to the db when a new object is instantiated
     function __construct() {
-        $this -> open_db();
+        $this->db = $this -> open_db();
     }
     // function to make queries to the db
     public function query($sql) {
-        $result = $this -> connect -> query($sql);
+        $result = $this ->db->query($sql);
         $this -> confirm($result);
         return $result;
     }
 
     private function confirm($result) {
         if(!$result) {
-            die($this -> connect -> error);
+            die($this ->db->error);
         }
     }
 
     public function escape($string) {
-        $escaped = $this -> connect -> real_escape_string($string);
-        return $escaped;
+        return $this ->db->real_escape_string($string);
     }
 
     public function the_insert_id() {
-        return mysqli_insert_id($this -> connect);
+        return mysqli_insert_id($this ->db);
     }
 }
 
