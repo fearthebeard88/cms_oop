@@ -19,18 +19,21 @@
 
             if(empty($_FILES['user_image'])) {
                 $user -> save();
-                redirect("edit_user.php?id={$user->id}");
+                $session->message("The user has been updated");
+                redirect("users.php");
             } else {
                 $user -> set_image($_FILES['user_image']);
                 $user -> save_photo();
                 $user -> save();
-                redirect("edit_user.php?id={$user->id}");
+                $session->message("The user, {$user->username}, has been updated");
+                redirect("users.php");
             }
         }
     }
 
     if(isSet($_POST['delete'])) {
         $user -> delete();
+        $session->message("The user, {$user->username}, has been deleted");
         redirect("users.php");
     }
 

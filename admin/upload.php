@@ -11,6 +11,7 @@ if(isSet($_POST['submit'])) {
     $photo -> title = $_POST['title'];
     $photo->caption=$_POST['caption'];
     $photo->description=$_POST['description'];
+    $photo->alternate_text=$_POST['alt'];
     $photo -> set_file($_FILES['file_upload']);
 
     if($photo -> save_db()) {
@@ -44,7 +45,7 @@ if(isSet($_POST['submit'])) {
             <small>Upload a Photo!</small>
         </h1>
     <div class="col-md-6">
-    <?php echo $message; ?>
+    <p class = "bg-success"><?php echo $message; ?></p>
         <form action = "upload.php" method = "post" enctype = "multipart/form-data">
         <div class="form-group">
             <label for="title">Title </label>
@@ -52,7 +53,11 @@ if(isSet($_POST['submit'])) {
         </div>
         <div class="form-group">
             <label for="caption">Caption </label>
-            <input type="text" name="caption" class="form-control" placeholder="This is what will show if for some reason the photo does not show on a browser.">
+            <input type="text" name="caption" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="alt">Alternate Text </label>
+            <input type="text" name="alt" class="form-control">
         </div>
         <div class="form-group">
             <label for="description">Description </label>

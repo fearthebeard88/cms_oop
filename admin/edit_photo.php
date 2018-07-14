@@ -16,7 +16,7 @@ if(empty($_GET['id'])) {
             $photo -> caption = $_POST['caption'];
             $photo -> alternate_text = $_POST['alternate_text'];
             $photo -> description = $_POST['description'];
-
+            $session->message("Photo has been updated");
             $photo -> save();
             redirect('photos.php');
         }

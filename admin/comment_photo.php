@@ -31,10 +31,8 @@ $comments = Comment::find_comments($_GET['photo_id']);
 <div class="row">
     <div class="col-lg-12">
         <h1 class="page-header">
-            Comments for Photo
+            Comments for Photo</h1>
             <small><?php echo $count; ?></small>
-        </h1>
-        
         <div class="col-md-12">
             <table class = "table table-hover">
                 <thead>

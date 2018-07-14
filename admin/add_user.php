@@ -16,6 +16,7 @@
             $user -> set_image($_FILES['user_image']);
             $user -> save_photo();
             $user -> save();
+            $session->message("User, {$user->username}, has been created.");
             redirect('users.php');
         }
     }
@@ -40,8 +41,8 @@
 <div class="row">
     <div class="col-lg-12">
         <h1 class="page-header">
-            users
-            <small>Subheading</small>
+            Add Users
+            <small>New User</small>
         </h1>
 
         <form action = "" method = "post" enctype = "multipart/form-data">

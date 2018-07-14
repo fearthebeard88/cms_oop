@@ -23,7 +23,8 @@ $photos = Photo :: find_all();
         <h1 class="page-header">
             Photos
             <small>Viewing All Photos</small>
-        </h1>
+            </h1>
+            <p class = "bg-success"><?php echo $session->message; ?></p>
         <div class="col-md-12">
             <table class = "table table-hover">
                 <thead>
