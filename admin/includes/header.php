@@ -25,6 +25,7 @@
 
     <!-- Custom CSS -->
     <link href="css/sb-admin.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/dropzone.css">
     <link rel="stylesheet" href="css/styles.css">
 
     <!-- Custom Fonts -->

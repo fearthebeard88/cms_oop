@@ -21,61 +21,76 @@ if(isSet($_POST['submit'])) {
     }
 }
 
+if(isSet($_FILES['file'])) {
+    $photo = new Photo();
+    $photo->set_file($_FILES['file']);
+    if($photo->save_db()) {
+        $message = "Photos uploaded successfully.";
+    }
+}
+
 ?>
 
-        <!-- Navigation -->
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <?php include("includes/top_nav.php"); ?>
+<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+<?php include("includes/top_nav.php"); ?>
 
 
-            <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
-            <?php include("includes/side_nav.php"); ?>
-            <!-- /.navbar-collapse -->
-        </nav>
+<!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+<?php include("includes/side_nav.php"); ?>
+<!-- /.navbar-collapse -->
+</nav>
 
-        <div id="page-wrapper">
+<div id="page-wrapper">
 
-            <div class="container-fluid">
+    <div class="container-fluid">
 
 <!-- Page Heading -->
-<div class="row">
-    <div class="col-lg-12">
-        <h1 class="page-header">
-            Upload
-            <small>Upload a Photo!</small>
-        </h1>
-    <div class="col-md-6">
-    <p class = "bg-success"><?php echo $message; ?></p>
-        <form action = "upload.php" method = "post" enctype = "multipart/form-data">
-        <div class="form-group">
-            <label for="title">Title </label>
-            <input type="text" name = "title" class = "form-control">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Upload
+                    <small>Upload a Photo!</small>
+                </h1>
+                <div class="row">
+                    <div class="col-md-6">
+                        <p class = "bg-success"><?php echo $message; ?></p>
+                        <form action = "upload.php" method = "post" enctype = "multipart/form-data">
+                            <div class="form-group">
+                                <label for="title">Title </label>
+                                <input type="text" name = "title" class = "form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="caption">Caption </label>
+                                <input type="text" name="caption" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="alt">Alternate Text </label>
+                                <input type="text" name="alt" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="description">Description </label>
+                                <input type="text" name="description" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <input type="file" name = "file_upload">
+                            </div>
+                            <input type="submit" name = "submit">
+                        </form>
+                    </div>
+                </div> <!-- end of row -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <form action="upload.php" class = "dropzone">
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="form-group">
-            <label for="caption">Caption </label>
-            <input type="text" name="caption" class="form-control">
-        </div>
-        <div class="form-group">
-            <label for="alt">Alternate Text </label>
-            <input type="text" name="alt" class="form-control">
-        </div>
-        <div class="form-group">
-            <label for="description">Description </label>
-            <input type="text" name="description" class="form-control">
-        </div>
-        <div class="form-group">
-            <input type="file" name = "file_upload">
-        </div>
-        <input type="submit" name = "submit">
-        </form>
-    </div>
-    </div>
-</div>
 <!-- /.row -->
 
-</div>
-<!-- /.container-fluid -->
         </div>
-        <!-- /#page-wrapper -->
+<!-- /.container-fluid -->
+    </div>
+<!-- /#page-wrapper -->
 
-  <?php include("includes/footer.php"); ?>
+<?php include("includes/footer.php"); ?>

@@ -12,9 +12,11 @@ if(isSet($_POST['submit'])) {
 
     $comment = Comment::create_comment($photo->id, $author, $body);
     if($comment && $comment->save()) {
+        $session->message("The comment has been added");
         redirect("photo_page.php?id={$photo->id}");
     } else {
-        $message = "There was an issue with saving your comment.";
+        $session->message("There was an issue with saving your comment.");
+        redirect("photo_page.php?id={$photo->id}");
     }
 } else {
     $author = "";
@@ -32,16 +34,17 @@ $comments = Comment::find_comments($photo->id);
 
                 <!-- Title -->
                 <h1><?php echo $photo->title; ?></h1>
+                <p class = "bg-success"><?php echo $session->message; ?></p>
 
                 <!-- Author -->
                 <p class="lead">
-                    by <a href="#">Someone that will be revealed later</a>
+                    by <a href="#">I'll figure this part out later</a>
                 </p>
 
                 <hr>
 
                 <!-- Date/Time -->
-                <p><span class="glyphicon glyphicon-time"></span> Posted on August 24, 2013 at 9:00 PM</p>
+                <p><span class="glyphicon glyphicon-time"></span></p>
 
                 <hr>
 
