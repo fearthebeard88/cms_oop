@@ -70,4 +70,10 @@
     position: fixed !important;
     }
     
-   
+   #login-id label {
+       color: white;
+   }
+
+   .message {
+       color: red;
+   }
