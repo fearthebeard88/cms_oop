@@ -11,9 +11,12 @@ if(empty($_GET['id'])) {
 
 $user = User :: find_id($_GET['id']);
 
-if($user -> delete()) {
+if($user) {
+    $user->delete_photo();
+    $session->message("{$user->username}, has been removed.");
     redirect('../users.php');
 } else {
+    $session->message("User has not been removed.");
     redirect('../users.php');
 }
 

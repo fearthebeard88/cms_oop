@@ -92,6 +92,15 @@ public function save_photo() {
 
         echo $this->user_picture();
     }
+
+    public function delete_photo() {
+        if($this -> delete()) {
+            $target_path = SITE_ROOT . DS . 'admin' . DS . $this->upload_directory . DS . $this ->user_picture();
+            return unlink($target_path) ? true : false;
+        } else {
+            return false;
+        }
+    }
 }
 
 
