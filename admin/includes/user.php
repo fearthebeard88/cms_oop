@@ -67,7 +67,7 @@ public function save_photo() {
         
         if(move_uploaded_file($this ->tmp_path, $target_path)) {
                 unset($this -> tmp_path);
-                $this -> save();
+                // $this -> save();
                 return true;
         } else {
             echo $target_path;
